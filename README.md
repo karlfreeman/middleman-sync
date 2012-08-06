@@ -1,2 +1,2 @@
-middleman-sync
+Middleman Sync
 ==============
