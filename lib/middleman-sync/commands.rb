@@ -21,8 +21,8 @@ module Middleman
 
         shared_inst = ::Middleman::Application.server.inst
 
-        enabled = shared_inst.options.enabled
-        if (!enabled)
+        after_build = shared_inst.options.after_build
+        if (!after_build)
           raise Thor::Error.new "You need to activate the sync extension in config.rb"
         end
 
