@@ -46,7 +46,7 @@ end
 ``` ruby
 # Activate sync extension
 activate :sync do |sync|
-  sync.fog_provider = 'AWS' # Your storage provider
+  sync.fog_provider = 'Google' # Your storage provider
   sync.fog_directory = 'bucket-name' # Your bucket name
   sync.fog_region = 'bucket-region-name' # The region your storage bucket is in
   sync.google_storage_access_key_id = 'super' # Your Google Storage access key
