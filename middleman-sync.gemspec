@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.email       = ["karlfreeman@gmail.com"]
   s.homepage    = "https://github.com/karlfreeman/middleman-sync"
   s.summary     = %q{Synchronise your Middleman build to S3 and more}
-  s.description = %q{Synchronise your Middleman build to S3 and more}
+  s.description = %q{Middleman-Sync is a Middleman extension that wraps the excellant AssetSync to allow for both a CLI and after_build hook to your Middleman build's}
 
   s.rubyforge_project = "middleman-sync"
 
