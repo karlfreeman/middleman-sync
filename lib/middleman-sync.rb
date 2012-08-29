@@ -1,8 +1,5 @@
-require "awesome_print"
 require "middleman-core"
-
-require "middleman-sync/version"
-require "middleman-sync/commands/sync"
+require "middleman-sync/commands"
 
 ::Middleman::Extensions.register(:sync, ">= 3.0.0") do
   require "middleman-sync/extension"
