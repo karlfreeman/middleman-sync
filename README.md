@@ -70,10 +70,6 @@ middleman sync
 middleman build
 ```
 
-## Todo
-
-1. Replace AssetSync's logger to use Middleman's Thor builder.say_status
-
 ## Credits
 
 Is essentially :
