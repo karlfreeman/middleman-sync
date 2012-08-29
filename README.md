@@ -7,6 +7,7 @@ Middleman Sync is post build hook and cli for Middleman to allow you to use [Ass
 ## Installation
 
 If you already have a Middleman project:
+
 Add `middleman-sync` to your `Gemfile` then open up your `config.rb` and add:
 
 ``` ruby
@@ -21,6 +22,9 @@ activate :sync do |sync|
   # sync.existing_remote_files = 'keep' # What to do with your existing remote files? (keep or delete)
 end
 ```
+
+
+## Usage
 
 Once you've bundled you should be able to run:
 
@@ -40,7 +44,7 @@ middleman build
 
 Is essentially :
 
- - [https://raw.github.com/rumblelabs/asset_sync](https://raw.github.com/rumblelabs/asset_sync)
+ - [https://github.com/rumblelabs/asset_sync](https://github.com/rumblelabs/asset_sync)
 
 Cribbed :
 
