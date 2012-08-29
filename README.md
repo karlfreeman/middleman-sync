@@ -8,7 +8,7 @@ Middleman Sync is post build hook and cli for Middleman to allow you to use [Ass
 
 If you already have a Middleman project:
 
-Add `middleman-sync` to your `Gemfile` then open up your `config.rb` and add:
+Add `gem "middleman-sync", "~> 3.0.0"` to your `Gemfile` then open up your `config.rb` and add:
 
 ### AWS
 
