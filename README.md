@@ -10,19 +10,20 @@ If you already have a Middleman project:
 
 Add `middleman-sync` to your `Gemfile` then open up your `config.rb` and add:
 
+### AWS
+
 ``` ruby
 # Activate sync extension
 activate :sync do |sync|
-  sync.fog_provider = 'AWS'
-  sync.fog_directory = 'bucket-name'
-  sync.fog_region = 'bucket-region-name'
-  sync.aws_access_key_id = 'super'
-  sync.aws_secret_access_key = 'secret'
-  # sync.after_build = true # Run sync after running build
+  sync.fog_provider = 'AWS' # Your storage provider
+  sync.fog_directory = 'bucket-name' # Your bucket name
+  sync.fog_region = 'bucket-region-name' # The region your storage bucket is in
+  sync.aws_access_key_id = 'super' # Your Amazon S3 access key
+  sync.aws_secret_access_key = 'secret' # Your Amazon S3 access secret
+  # sync.after_build = true # Run sync after build
   # sync.existing_remote_files = 'keep' # What to do with your existing remote files? (keep or delete)
 end
 ```
-
 
 ## Usage
 
