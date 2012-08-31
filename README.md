@@ -1,6 +1,6 @@
 # Middleman Sync
 
-Synchronise your Middleman build to S3 and more
+Synchronise your Middleman build to S3 and more using AssetSync
 
 Middleman Sync is post build hook and cli for Middleman to allow you to use [Asset Sync](https://raw.github.com/rumblelabs/asset_sync) for your static build deployments.
 
