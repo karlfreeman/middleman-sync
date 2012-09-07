@@ -43,6 +43,7 @@ module Middleman
             config.rackspace_auth_url = options.rackspace_auth_url
             config.google_storage_secret_access_key = options.google_storage_secret_access_key
             config.google_storage_access_key_id = options.google_storage_access_key_id
+            config.existing_remote_files = options.existing_remote_files if options.existing_remote_files
           end
 
           after_build do |builder|
