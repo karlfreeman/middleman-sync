@@ -20,8 +20,8 @@ activate :sync do |sync|
   sync.fog_region = 'bucket-region-name' # The region your storage bucket is in
   sync.aws_access_key_id = 'super' # Your Amazon S3 access key
   sync.aws_secret_access_key = 'secret' # Your Amazon S3 access secret
+  sync.existing_remote_files = 'keep' # What to do with your existing remote files? (keep or delete)
   # sync.after_build = true # Run sync after build
-  # sync.existing_remote_files = 'keep' # What to do with your existing remote files? (keep or delete)
 end
 ```
 
@@ -35,9 +35,9 @@ activate :sync do |sync|
   sync.fog_region = 'bucket-region-name' # The region your storage bucket is in
   sync.rackspace_username = 'karlfreeman' # Your Rackspace username
   sync.rackspace_api_key = 'secret' # Your Rackspace API Key
+  sync.existing_remote_files = 'keep' # What to do with your existing remote files? (keep or delete)
   # sync.rackspace_auth_url = 'domain' # Your Rackspace auth URL
   # sync.after_build = true # Run sync after build
-  # sync.existing_remote_files = 'keep' # What to do with your existing remote files? (keep or delete)
 end
 ```
 
@@ -51,8 +51,8 @@ activate :sync do |sync|
   sync.fog_region = 'bucket-region-name' # The region your storage bucket is in
   sync.google_storage_access_key_id = 'super' # Your Google Storage access key
   sync.google_storage_secret_access_key = 'secret' # Your Google Storage access secret
+  sync.existing_remote_files = 'keep' # What to do with your existing remote files? (keep or delete)
   # sync.after_build = true # Run sync after build
-  # sync.existing_remote_files = 'keep' # What to do with your existing remote files? (keep or delete)
 end
 ```
 
