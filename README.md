@@ -10,7 +10,7 @@ The after_build hook is `false` by default, to allow for a more 'opt-in' extensi
 
 If you already have a Middleman project:
 
-Add `gem "middleman-sync", "~> 3.0.0"` to your `Gemfile` then open up your `config.rb` and add:
+Add `gem "middleman-sync", "~> 3.0.4"` to your `Gemfile` then open up your `config.rb` and add:
 
 ### AWS
 
