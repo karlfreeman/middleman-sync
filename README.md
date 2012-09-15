@@ -4,6 +4,8 @@ Synchronise your Middleman build to S3 and more
 
 Middleman-Sync is a Middleman extension that wraps the excellant [Asset Sync](https://raw.github.com/rumblelabs/asset_sync) to allow for both a CLI and after_build hook to your Middleman build's
 
+The after_build hook is `false` by default, to allow for a more 'opt-in' extension.
+
 ## Installation
 
 If you already have a Middleman project:
@@ -20,8 +22,8 @@ activate :sync do |sync|
   sync.fog_region = 'bucket-region-name' # The region your storage bucket is in
   sync.aws_access_key_id = 'super' # Your Amazon S3 access key
   sync.aws_secret_access_key = 'secret' # Your Amazon S3 access secret
-  sync.existing_remote_files = 'keep' # What to do with your existing remote files? (keep or delete)
-  # sync.after_build = true # Run sync after build
+  sync.existing_remote_files = 'keep' # What to do with your existing remote files? ( keep or delete )
+  # sync.after_build = true # Enable sync to run after Middleman build ( defaults to false )
 end
 ```
 
@@ -35,9 +37,9 @@ activate :sync do |sync|
   sync.fog_region = 'bucket-region-name' # The region your storage bucket is in
   sync.rackspace_username = 'karlfreeman' # Your Rackspace username
   sync.rackspace_api_key = 'secret' # Your Rackspace API Key
-  sync.existing_remote_files = 'keep' # What to do with your existing remote files? (keep or delete)
+  sync.existing_remote_files = 'keep' # What to do with your existing remote files? ( keep or delete )
   # sync.rackspace_auth_url = 'domain' # Your Rackspace auth URL
-  # sync.after_build = true # Run sync after build
+  # sync.after_build = true # Enable sync to run after Middleman build ( defaults to false )
 end
 ```
 
@@ -51,8 +53,8 @@ activate :sync do |sync|
   sync.fog_region = 'bucket-region-name' # The region your storage bucket is in
   sync.google_storage_access_key_id = 'super' # Your Google Storage access key
   sync.google_storage_secret_access_key = 'secret' # Your Google Storage access secret
-  sync.existing_remote_files = 'keep' # What to do with your existing remote files? (keep or delete)
-  # sync.after_build = true # Run sync after build
+  sync.existing_remote_files = 'keep' # What to do with your existing remote files? ( keep or delete )
+  # sync.after_build = true # Enable sync to run after Middleman build ( defaults to false )
 end
 ```
 
