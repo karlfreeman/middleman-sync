@@ -26,7 +26,7 @@ module Middleman
         app.after_configuration do
 
           options.after_build ||= false
-          options.prefix = "*"
+          options.prefix = "**"
           options.public_path = build_dir
 
           AssetSync.configure do |config|
