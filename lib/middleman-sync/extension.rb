@@ -25,7 +25,7 @@ module Middleman
 
         app.after_configuration do
 
-          options.after_build ||= false
+          options.after_build ||= true
           options.prefix = "**"
           options.public_path = build_dir
 
