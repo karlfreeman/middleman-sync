@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    middleman-sync (3.0.4)
+    middleman-sync (3.0.6)
       asset_sync (~> 0.5.0)
       middleman-core (>= 3.0.0)
 
