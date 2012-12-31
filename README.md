@@ -33,7 +33,7 @@ activate :sync do |sync|
   sync.fog_provider = 'Rackspace' # Your storage provider
   sync.fog_directory = 'bucket-name' # Your bucket name
   sync.fog_region = 'bucket-region-name' # The region your storage bucket is in
-  sync.rackspace_username = 'karlfreeman' # Your Rackspace username
+  sync.rackspace_username = 'super' # Your Rackspace username
   sync.rackspace_api_key = 'secret' # Your Rackspace API Key
   sync.existing_remote_files = 'keep' # What to do with your existing remote files? ( keep or delete )
   # sync.rackspace_auth_url = 'domain' # Your Rackspace auth URL
