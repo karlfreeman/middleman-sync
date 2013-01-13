@@ -8,7 +8,7 @@ Middleman-Sync is a [Middleman](https://github.com/middleman/middleman) extensio
 
 If you already have a Middleman project:
 
-Add `gem "middleman-sync", "~> 3.0.5"` to your `Gemfile` then open up your `config.rb` and add:
+Add `gem "middleman-sync", "~> 3.0.7"` to your `Gemfile` then open up your `config.rb` and add:
 
 ### AWS
 
