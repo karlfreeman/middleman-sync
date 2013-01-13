@@ -20,5 +20,5 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   
   s.add_runtime_dependency("middleman-core", [">= 3.0.0"])
-  s.add_runtime_dependency("asset_sync", ["~> 0.5.0"])
+  s.add_runtime_dependency("asset_sync", ["0.5.0"])
 end
