@@ -1,9 +1,9 @@
 PATH
   remote: .
   specs:
-    middleman-sync (3.0.6)
-      asset_sync (= 0.5.0)
-      middleman-core (>= 3.0.0)
+    middleman-sync (3.0.7)
+      asset_sync (~> 0.5.4)
+      middleman-core (~> 3.0.0)
 
 GEM
   remote: http://rubygems.org/
@@ -14,7 +14,7 @@ GEM
     activesupport (3.2.11)
       i18n (~> 0.6)
       multi_json (~> 1.0)
-    asset_sync (0.5.0)
+    asset_sync (0.5.4)
       activemodel
       fog
     builder (3.0.4)
