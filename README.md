@@ -21,6 +21,7 @@ activate :sync do |sync|
   sync.aws_access_key_id = 'super' # Your Amazon S3 access key
   sync.aws_secret_access_key = 'secret' # Your Amazon S3 access secret
   sync.existing_remote_files = 'keep' # What to do with your existing remote files? ( keep or delete )
+  # sync.gzip_compression = false # Automatically replace files with their equivalent gzip compressed version
   # sync.after_build = false # Disable sync to run after Middleman build ( defaults to true )
 end
 ```
@@ -36,6 +37,7 @@ activate :sync do |sync|
   sync.rackspace_username = 'super' # Your Rackspace username
   sync.rackspace_api_key = 'secret' # Your Rackspace API Key
   sync.existing_remote_files = 'keep' # What to do with your existing remote files? ( keep or delete )
+  # sync.gzip_compression = false # Automatically replace files with their equivalent gzip compressed version
   # sync.rackspace_auth_url = 'domain' # Your Rackspace auth URL
   # sync.after_build = false # Disable sync to run after Middleman build ( defaults to true )
 end
@@ -52,6 +54,7 @@ activate :sync do |sync|
   sync.google_storage_access_key_id = 'super' # Your Google Storage access key
   sync.google_storage_secret_access_key = 'secret' # Your Google Storage access secret
   sync.existing_remote_files = 'keep' # What to do with your existing remote files? ( keep or delete )
+  # sync.gzip_compression = false # Automatically replace files with their equivalent gzip compressed version
   # sync.after_build = false # Disable sync to run after Middleman build ( defaults to true )
 end
 ```
