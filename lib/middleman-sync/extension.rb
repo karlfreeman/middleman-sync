@@ -4,7 +4,7 @@ module Middleman
 
   module Sync
 
-    class Options < Struct.new(:prefix, :public_path, :fog_provider, :fog_directory, :fog_region, :aws_access_key_id, :aws_secret_access_key, :rackspace_username, :rackspace_api_key, :rackspace_auth_url, :google_storage_secret_access_key, :google_storage_access_key_id, :after_build, :existing_remote_files); end
+    class Options < Struct.new(:prefix, :public_path, :fog_provider, :fog_directory, :fog_region, :aws_access_key_id, :aws_secret_access_key, :rackspace_username, :rackspace_api_key, :rackspace_auth_url, :google_storage_secret_access_key, :google_storage_access_key_id, :after_build, :existing_remote_files, :gzip_compression); end
 
     class << self
 
@@ -43,6 +43,7 @@ module Middleman
             config.google_storage_secret_access_key = options.google_storage_secret_access_key
             config.google_storage_access_key_id = options.google_storage_access_key_id
             config.existing_remote_files = options.existing_remote_files if options.existing_remote_files
+            config.gzip_compression = !!options.gzip_compression
           end
 
           after_build do |builder|
