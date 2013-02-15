@@ -9,7 +9,7 @@ module Middleman
     class << self
 
       def options
-        @@options
+        @@sync_options
       end
 
       def registered(app, options_hash={}, &block)
@@ -18,8 +18,8 @@ module Middleman
 
         options = Options.new(options_hash)
         yield options if block_given?
-        
-        @@options = options
+
+        @@sync_options = options
 
         app.send :include, Helpers
 
@@ -59,8 +59,8 @@ module Middleman
     end
 
     module Helpers
-      
-      def options
+
+      def sync_options
         ::Middleman::Sync.options
       end
 
