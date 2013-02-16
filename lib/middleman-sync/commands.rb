@@ -21,7 +21,7 @@ module Middleman
 
         shared_inst = ::Middleman::Application.server.inst
 
-        if (!shared_inst.respond_to?('options') || !shared_inst.options.fog_provider)
+        if (!shared_inst.respond_to?('sync_options') || !shared_inst.sync_options.fog_provider)
           raise Thor::Error.new "You need to activate the sync extension in config.rb"
         end
 
