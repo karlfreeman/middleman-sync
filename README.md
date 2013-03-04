@@ -94,11 +94,9 @@ end
 
 ## Credits
 
-Using:
-
- - [https://github.com/rumblelabs/asset_sync](https://github.com/rumblelabs/asset_sync)
+- [Asset Sync](https://github.com/rumblelabs/asset_sync)
 
 Cribbed:
 
-- [https://github.com/tvaughan/middleman-deploy](https://github.com/tvaughan/middleman-deploy)
-- [https://github.com/middleman/middleman-smusher](https://github.com/middleman/middleman-smusher)
+- [Middleman Deploy](https://github.com/tvaughan/middleman-deploy)
+- [Middleman Smusher](https://github.com/middleman/middleman-smusher)
