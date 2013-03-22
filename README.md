@@ -46,7 +46,7 @@ end
 #
 activate :sync_target do |target|
   target.sync_source = :aws
-  target.directory = 'example-bucket'
+  target.directory = 'example-bucket/images'
   target.glob = '**/*.jpg'
   target.cache_control = 'max-age=315576000'
   target.storage_class = :rrs
@@ -55,7 +55,7 @@ end
 #
 activate :sync_target do |target|
   target.sync_source = :aws
-  target.directory = 'example-bucket/images'
+  target.directory = 'example-bucket'
   target.glob = '**/*.html'
   target.cache_control = 'max-age=100'
   target.storage_class = :standard
