@@ -97,5 +97,5 @@ DEPENDENCIES
   simplecov
   timecop
   vcr
-  webmock (~> 1.10)
+  webmock
   yard

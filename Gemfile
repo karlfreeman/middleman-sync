@@ -19,7 +19,7 @@ end
 group :test do
   gem 'rspec'
   gem 'vcr'
-  gem 'webmock', '~> 1.10'
+  gem 'webmock'
   gem 'timecop'
   gem 'fakefs', :require => 'fakefs/safe'
   gem 'simplecov', :require => false
