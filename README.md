@@ -1,4 +1,4 @@
-# Middleman Sync [![Gem Version](https://badge.fury.io/rb/middleman-sync.png)][gem] [![Build Status](https://travis-ci.org/karlfreeman/middleman-sync.png?branch=feature/3-1-rewrite)][travis] [![Dependency Status](https://gemnasium.com/karlfreeman/middleman-sync.png?travis)][gemnasium] [![Coverage Status](https://coveralls.io/repos/karlfreeman/middleman-sync/badge.png?branch=feature/3-1-rewrite)][coveralls] [![Code Climate](https://codeclimate.com/github/karlfreeman/middleman-sync.png)][codeclimate]
+# Middleman Sync ( WIP ) [![Gem Version](https://badge.fury.io/rb/middleman-sync.png)][gem] [![Build Status](https://travis-ci.org/karlfreeman/middleman-sync.png?branch=feature/3-1-rewrite)][travis] [![Dependency Status](https://gemnasium.com/karlfreeman/middleman-sync.png?travis)][gemnasium] [![Coverage Status](https://coveralls.io/repos/karlfreeman/middleman-sync/badge.png?branch=feature/3-1-rewrite)][coveralls] [![Code Climate](https://codeclimate.com/github/karlfreeman/middleman-sync.png)][codeclimate]
 
 [gem]: https://rubygems.org/gems/middleman-sync
 [travis]: http://travis-ci.org/karlfreeman/middleman-sync
@@ -8,6 +8,47 @@
 
 Synchronise your Middleman build to S3 and more
 
-Middleman-Sync is a [Middleman](https://github.com/middleman/middleman) extension that wraps the excellant [Asset Sync](https://raw.github.com/rumblelabs/asset_sync) to allow for both a CLI and after_build hook to your Middleman build's
+Middleman-Sync is a [Middleman][middleman] extension...
 
-## Installation
+[middleman]: http://middlemanapp.com/
+
+## Usage Examples
+
+```ruby
+
+# preview syntax
+
+# S3
+activate :sync_source do |sync|
+  sync.provider = :aws
+  sync.region = 'us-east-1'
+  sync.access_key_id = 'super'
+  sync.secret_access_key = 'secret'
+end
+
+# sync all files
+activate :sync_target do |target|
+  target.directory = 'example-bucket/foo'
+  target.glob = '**/*'
+  target.cache_control = 'max-age=315576000'
+  target.storage_class = :rrs
+end
+
+```
+
+## Supported Storage Services
+Behind the scenes we're [Fog::Storage][fog storage] which allows us to support everything fog does.
+
+[fog storage]: http://fog.io/storage/
+
+* [Amazon S3](http://aws.amazon.com/s3/)
+* [Rackspace CloudFiles](http://www.rackspace.com/cloud/files/)
+* [Google Cloud Storage](https://developers.google.com/storage/)
+
+## Supported Ruby Versions
+This library aims to support and is [tested against][travis] the following Ruby
+implementations:
+
+* Ruby 1.9.2
+* Ruby 1.9.3
+* Ruby 2.0.0
