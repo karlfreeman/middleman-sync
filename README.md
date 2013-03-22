@@ -64,7 +64,7 @@ end
 ```
 
 ## Supported Storage Services
-Behind the scenes we're [Fog::Storage][fog storage] which allows us to support everything fog does.
+Behind the scenes we're using [Fog::Storage][fog storage] which allows us to support the most popular storage providers
 
 [fog storage]: http://fog.io/storage/
 
