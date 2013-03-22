@@ -26,12 +26,39 @@ activate :sync_source do |sync|
   sync.secret_access_key = 'secret'
 end
 
-# sync all files
+# Google Storage
+activate :sync_source do |sync|
+  sync.provider = :google
+  sync.region = 'us-east-1'
+  sync.access_key_id = 'super'
+  sync.secret_access_key = 'secret'
+end
+
+# Rackspace
+activate :sync_source do |sync|
+  sync.provider = :rackspace
+  sync.region = 'bucket-region-name'
+  sync.rackspace_username = 'super'
+  sync.rackspace_api_key = 'secret'
+  # sync.rackspace_auth_url = 'lon.auth.api.rackspacecloud.com'
+end
+
+#
 activate :sync_target do |target|
-  target.directory = 'example-bucket/foo'
-  target.glob = '**/*'
+  target.sync_source = :aws
+  target.directory = 'example-bucket'
+  target.glob = '**/*.jpg'
   target.cache_control = 'max-age=315576000'
   target.storage_class = :rrs
+end
+
+#
+activate :sync_target do |target|
+  target.sync_source = :aws
+  target.directory = 'example-bucket/images'
+  target.glob = '**/*.html'
+  target.cache_control = 'max-age=100'
+  target.storage_class = :standard
 end
 
 ```
