@@ -1,4 +1,4 @@
-# Middleman Sync [![Gem Version](https://badge.fury.io/rb/middleman-sync.png)][gem] [![Build Status](https://travis-ci.org/karlfreeman/middleman-sync.png?branch=master)][travis] [![Dependency Status](https://gemnasium.com/karlfreeman/middleman-sync.png?travis)][gemnasium] [![Coverage Status](https://coveralls.io/repos/karlfreeman/middleman-sync/badge.png?branch=master)][coveralls] [![Code Climate](https://codeclimate.com/github/karlfreeman/middleman-sync.png)][codeclimate]
+# Middleman Sync [![Gem Version](https://badge.fury.io/rb/middleman-sync.png)][gem] [![Build Status](https://travis-ci.org/karlfreeman/middleman-sync.png?branch=feature/3-1-rewrite)][travis] [![Dependency Status](https://gemnasium.com/karlfreeman/middleman-sync.png?travis)][gemnasium] [![Coverage Status](https://coveralls.io/repos/karlfreeman/middleman-sync/badge.png?branch=feature/3-1-rewrite)][coveralls] [![Code Climate](https://codeclimate.com/github/karlfreeman/middleman-sync.png)][codeclimate]
 
 [gem]: https://rubygems.org/gems/middleman-sync
 [travis]: http://travis-ci.org/karlfreeman/middleman-sync
