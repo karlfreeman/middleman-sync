@@ -19,4 +19,5 @@ require 'middleman-sync'
 
 #
 RSpec.configure do |config|
+  include Middleman::Helpers::Fixtures
 end
