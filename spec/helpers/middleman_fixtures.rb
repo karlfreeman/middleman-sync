@@ -4,13 +4,13 @@ module Middleman
 
       #
       def fixtures_root
-        File.expand_path(File.join(File.dirname(__FILE__), '../', 'fixtures', 'middleman'))
+        File.expand_path(File.join(File.dirname(__FILE__), "../", "fixtures", "middleman"))
       end
 
       # Graciously cribbed from https://github.com/middleman/middleman/issues/737#issuecomment-14122832
       def middleman_app(fixture)
         fixture_root_dir = File.join(self.fixtures_root, fixture)
-        File.exists?(File.join(fixture_root_dir, 'source')) ? ENV['MM_SOURCE'] = 'source' : ENV['MM_SOURCE'] = '' 
+        File.exists?(File.join(fixture_root_dir, "source")) ? ENV["MM_SOURCE"] = "source" : ENV["MM_SOURCE"] = "" 
 
         initialize_commands = @initialize_commands || []
         initialize_commands.unshift lambda {
