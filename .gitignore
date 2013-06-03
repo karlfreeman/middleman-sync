@@ -21,3 +21,4 @@ doc/
 
 # Rubymine
 .idea
+/Gemfile.lock
