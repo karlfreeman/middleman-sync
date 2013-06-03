@@ -19,46 +19,46 @@ Middleman-Sync is a [Middleman][middleman] extension...
 # preview syntax
 
 # S3
-activate :sync_source do |sync|
-  sync.provider = :aws
-  sync.region = 'us-east-1'
-  sync.access_key_id = 'super'
-  sync.secret_access_key = 'secret'
+activate :sync_target do |target|
+  target.provider = :aws
+  target.region = 'us-east-1'
+  target.access_key_id = 'super'
+  target.secret_access_key = 'secret'
 end
 
 # Google Storage
-activate :sync_source do |sync|
-  sync.provider = :google
-  sync.region = 'us-east-1'
-  sync.access_key_id = 'super'
-  sync.secret_access_key = 'secret'
+activate :sync_target do |target|
+  target.provider = :google
+  target.region = 'us-east-1'
+  target.access_key_id = 'super'
+  target.secret_access_key = 'secret'
 end
 
 # Rackspace
-activate :sync_source do |sync|
-  sync.provider = :rackspace
-  sync.region = 'bucket-region-name'
-  sync.rackspace_username = 'super'
-  sync.rackspace_api_key = 'secret'
-  # sync.rackspace_auth_url = 'lon.auth.api.rackspacecloud.com'
+activate :sync_target do |target|
+  target.provider = :rackspace
+  target.region = 'bucket-region-name'
+  target.rackspace_username = 'super'
+  target.rackspace_api_key = 'secret'
+  # target.rackspace_auth_url = 'lon.auth.api.rackspacecloud.com'
 end
 
 #
-activate :sync_target do |target|
-  target.sync_source = :aws
-  target.directory = 'example-bucket/images'
-  target.glob = '**/*.jpg'
-  target.cache_control = 'max-age=315576000'
-  target.storage_class = :rrs
+activate :sync_source do |target|
+  source.sync_target = :aws
+  source.directory = 'example-bucket/images'
+  source.glob = '**/*.jpg'
+  source.cache_control = 'max-age=315576000'
+  source.storage_class = :rrs
 end
 
 #
-activate :sync_target do |target|
-  target.sync_source = :aws
-  target.directory = 'example-bucket'
-  target.glob = '**/*.html'
-  target.cache_control = 'max-age=100'
-  target.storage_class = :standard
+activate :sync_source do |source|
+  source.sync_target = :aws
+  source.directory = 'example-bucket'
+  source.glob = '**/*.html'
+  source.cache_control = 'max-age=100'
+  source.storage_class = :standard
 end
 
 ```
