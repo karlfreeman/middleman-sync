@@ -18,7 +18,7 @@ module Middleman
 
         options = Options.new(options_hash)
         options.prefix = "**"
-        options.public_path = build_dir
+        options.public_path = app.build_dir
         yield options if block_given?
 
         @@sync_options = options
