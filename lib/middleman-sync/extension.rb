@@ -17,6 +17,8 @@ module Middleman
         ENV["RAILS_GROUPS"] = "assets"
 
         options = Options.new(options_hash)
+        options.prefix = "**"
+        options.public_path = build_dir
         yield options if block_given?
 
         @@sync_options = options
@@ -24,9 +26,6 @@ module Middleman
         app.send :include, Helpers
 
         app.after_configuration do
-
-          options.prefix = "**"
-          options.public_path = build_dir
 
           AssetSync.configure do |config|
             config.enabled = true
