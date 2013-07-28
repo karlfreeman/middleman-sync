@@ -10,6 +10,8 @@ gem "yard"
 # platforms :jruby do
 # end
 
+gem "multi_sync", :path => "../multi_sync"
+
 group :development do
   gem "kramdown", ">= 0.14"
   gem "pry"

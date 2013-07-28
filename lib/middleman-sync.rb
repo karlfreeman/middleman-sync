@@ -2,10 +2,9 @@ require "middleman-core"
 require "middleman-sync/version"
 
 module Middleman
-
   module Sync
+    require "multi_sync"
   end
-
 end
 
 ::Middleman::Extensions.register(:sync) do
