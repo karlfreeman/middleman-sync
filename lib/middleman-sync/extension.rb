@@ -4,7 +4,8 @@ module Middleman
 
   module Sync
 
-    class Options < Struct.new(:prefix, :public_path, :fog_provider, :fog_directory, :fog_region, :aws_access_key_id, :aws_secret_access_key, :rackspace_username, :rackspace_api_key, :rackspace_auth_url, :google_storage_secret_access_key, :google_storage_access_key_id, :after_build, :existing_remote_files, :gzip_compression, :ignored_files); end
+    OPTION_KEYS = [:prefix, :public_path, :fog_provider, :fog_directory, :fog_region, :aws_access_key_id, :aws_secret_access_key, :rackspace_username, :rackspace_api_key, :rackspace_auth_url, :google_storage_secret_access_key, :google_storage_access_key_id, :after_build, :existing_remote_files, :gzip_compression, :ignored_files].freeze
+    class Options < Struct.new(*OPTION_KEYS); end
 
     class << self
 
@@ -13,20 +14,23 @@ module Middleman
       end
 
       def registered(app, options_hash={}, &block)
-        require 'asset_sync'
-        ENV["RAILS_GROUPS"] = "assets"
+        require "asset_sync"
 
-        options = Options.new(options_hash)
-        options.prefix = "**"
-        options.public_path = app.build_dir
-        options.ignored_files = []
+        options = Options.new
+        OPTION_KEYS.each do |option|
+          options.send("#{option}=", options_hash[option]) if options_hash.keys.include?(option)
+        end
+
         yield options if block_given?
-
         @@sync_options = options
 
         app.send :include, Helpers
 
         app.after_configuration do
+
+          options.prefix ||= "**"
+          options.public_path ||= build_dir
+          options.ignored_files ||= []
 
           AssetSync.configure do |config|
             config.enabled = true
@@ -45,6 +49,7 @@ module Middleman
             config.existing_remote_files = options.existing_remote_files if options.existing_remote_files
             config.gzip_compression = !!options.gzip_compression
             config.ignored_files = options.ignored_files
+            config.log_silently = false
           end
 
           after_build do |builder|
