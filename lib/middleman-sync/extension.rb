@@ -4,7 +4,7 @@ module Middleman
 
   module Sync
 
-    class Options < Struct.new(:prefix, :public_path, :fog_provider, :fog_directory, :fog_region, :aws_access_key_id, :aws_secret_access_key, :rackspace_username, :rackspace_api_key, :rackspace_auth_url, :google_storage_secret_access_key, :google_storage_access_key_id, :after_build, :existing_remote_files, :gzip_compression); end
+    class Options < Struct.new(:prefix, :public_path, :fog_provider, :fog_directory, :fog_region, :aws_access_key_id, :aws_secret_access_key, :rackspace_username, :rackspace_api_key, :rackspace_auth_url, :google_storage_secret_access_key, :google_storage_access_key_id, :after_build, :existing_remote_files, :gzip_compression, :ignored_files); end
 
     class << self
 
@@ -17,6 +17,9 @@ module Middleman
         ENV["RAILS_GROUPS"] = "assets"
 
         options = Options.new(options_hash)
+        options.prefix = "**"
+        options.public_path = app.build_dir
+        options.ignored_files = []
         yield options if block_given?
 
         @@sync_options = options
@@ -24,9 +27,6 @@ module Middleman
         app.send :include, Helpers
 
         app.after_configuration do
-
-          options.prefix = "**"
-          options.public_path = build_dir
 
           AssetSync.configure do |config|
             config.enabled = true
@@ -44,6 +44,7 @@ module Middleman
             config.google_storage_access_key_id = options.google_storage_access_key_id
             config.existing_remote_files = options.existing_remote_files if options.existing_remote_files
             config.gzip_compression = !!options.gzip_compression
+            config.ignored_files = options.ignored_files
           end
 
           after_build do |builder|
