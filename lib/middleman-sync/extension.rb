@@ -52,10 +52,10 @@ module Middleman
             config.log_silently = false
           end
 
-          after_build do |builder|
-            ::AssetSync.sync if options.after_build
-          end
+        end
 
+        app.after_build do |builder|
+          ::AssetSync.sync if options.after_build
         end
 
       end
