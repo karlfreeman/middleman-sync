@@ -14,8 +14,8 @@ Gem::Specification.new do |gem|
   gem.description   = %q{Middleman-Sync is a Middleman extension that wraps the excellent AssetSync to allow for both a CLI and after_build hook to your Middleman build's}
   gem.summary       = %q{Synchronise your Middleman build to S3 and more}
   gem.homepage      = 'https://github.com/karlfreeman/rubykiq'
-  gem.files         = `git ls-files`.split('\n')
-  gem.test_files    = `git ls-files -- {test,spec,features}/*`.split('\n')
+  gem.files         = `git ls-files`.split("\n")
+  gem.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   gem.require_paths = ['lib']
   gem.required_ruby_version = '>= 1.9.2'
 end
