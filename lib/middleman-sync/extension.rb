@@ -4,7 +4,7 @@ module Middleman
 
   module Sync
 
-    OPTION_KEYS = [:prefix, :public_path, :fog_provider, :fog_directory, :fog_region, :aws_access_key_id, :aws_secret_access_key, :rackspace_username, :rackspace_api_key, :rackspace_auth_url, :google_storage_secret_access_key, :google_storage_access_key_id, :after_build, :existing_remote_files, :gzip_compression, :ignored_files].freeze
+    OPTION_KEYS = [:prefix, :public_path, :fog_provider, :fog_directory, :fog_region, :aws_access_key_id, :aws_secret_access_key, :rackspace_username, :rackspace_api_key, :rackspace_auth_url, :google_storage_secret_access_key, :google_storage_access_key_id, :after_build, :existing_remote_files, :gzip_compression, :ignored_files, :custom_headers].freeze
     class Options < Struct.new(*OPTION_KEYS); end
 
     class << self
@@ -50,6 +50,7 @@ module Middleman
             config.gzip_compression = !!options.gzip_compression
             config.ignored_files = options.ignored_files
             config.log_silently = false
+            config.custom_headers = options.custom_headers if options.custom_headers
           end
 
         end
