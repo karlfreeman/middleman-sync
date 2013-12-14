@@ -1,1 +1,1 @@
-require "middleman-sync"
+require 'middleman-sync'

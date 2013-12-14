@@ -1,4 +1,4 @@
-require "spec_helper"
+require 'spec_helper'
 
 describe Middleman::Sync do
 
@@ -9,9 +9,9 @@ describe Middleman::Sync do
 
   describe :middleman do
 
-    it "should get some data" do
-      @app = middleman_app("glob-app")
-      @app.class.should == Middleman::Application::MiddlemanApplication1
+    it 'should work' do
+      @cli = middleman_cli('glob-app')
+      @cli.build
     end
 
   end
