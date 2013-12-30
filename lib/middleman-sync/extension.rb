@@ -15,7 +15,7 @@ module Middleman
       option :target_pool_size, nil, "how many threads you would like to open for each target (defaults to the amount of CPU core's your machine has)'"
       option :max_sync_attempts, nil, 'how many times a file should be retried if there was an error during sync (defaults to 3)'
 
-      DEPRECATED_OPTIONS = %i(fog_provider fog_directory fog_region aws_access_key_id aws_secret_access_key rackspace_username rackspace_api_key rackspace_auth_url google_storage_access_key_id google_storage_secret_access_key existing_remote_files gzip_compression after_build)
+      DEPRECATED_OPTIONS = %i(fog_provider fog_directory fog_region aws_access_key_id aws_secret_access_key rackspace_username rackspace_api_key rackspace_auth_url google_storage_access_key_id google_storage_secret_access_key existing_remote_files gzip_compression after_build path_style)
       DEPRECATED_OPTIONS.each do |option_name|
         send(:option, option_name, nil)
       end
@@ -39,7 +39,7 @@ module Middleman
 
             credentials = {}
             credentials[:region] = opts[:fog_region]
-            %i(aws_access_key_id aws_secret_access_key rackspace_username rackspace_api_key rackspace_auth_url google_storage_access_key_id google_storage_secret_access_key).each do |credential_option|
+            %i(aws_access_key_id aws_secret_access_key rackspace_username rackspace_api_key rackspace_auth_url google_storage_access_key_id google_storage_secret_access_key path_style).each do |credential_option|
               credentials[credential_option] = opts[credential_option] unless opts[credential_option].nil?
             end
             
