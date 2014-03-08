@@ -12,8 +12,8 @@ module Middleman
       option :target_pool_size, nil, "how many threads you would like to open for each target (defaults to the amount of CPU core's your machine has)'"
       option :max_sync_attempts, nil, 'how many times a file should be retried if there was an error during sync (defaults to 3)'
 
-      DEPRECATED_ASSET_SYNC_CREDENTIAL_OPTIONS = [:aws_access_key_id :aws_secret_access_key :rackspace_username :rackspace_api_key :rackspace_auth_url :google_storage_access_key_id :google_storage_secret_access_key :path_style]
-      DEPRECATED_ASSET_SYNC_OPTIONS = [:fog_provider :fog_directory :fog_region :existing_remote_files :gzip_compression :after_build]
+      DEPRECATED_ASSET_SYNC_CREDENTIAL_OPTIONS = [:aws_access_key_id, :aws_secret_access_key, :rackspace_username, :rackspace_api_key, :rackspace_auth_url, :google_storage_access_key_id, :google_storage_secret_access_key, :path_style]
+      DEPRECATED_ASSET_SYNC_OPTIONS = [:fog_provider, :fog_directory, :fog_region, :existing_remote_files, :gzip_compression, :after_build]
       DEPRECATED_OPTIONS = DEPRECATED_ASSET_SYNC_CREDENTIAL_OPTIONS | DEPRECATED_ASSET_SYNC_OPTIONS
       DEPRECATED_OPTIONS.each do |option_name|
         send(:option, option_name, nil)
