@@ -12,49 +12,16 @@ gem 'middleman-sync', '~> 4.0'
 
 ## Features / Usage Examples
 
+### Source
+
 ```ruby
-# S3
-activate :sync_target do |target|
-  target.provider = :aws
-  target.region = 'us-east-1'
-  target.access_key_id = 'super'
-  target.secret_access_key = 'secret'
-end
+...
+```
 
-# Google Storage
-activate :sync_target do |target|
-  target.provider = :google
-  target.region = 'us-east-1'
-  target.access_key_id = 'super'
-  target.secret_access_key = 'secret'
-end
+### Target
 
-# Rackspace
-activate :sync_target do |target|
-  target.provider = :rackspace
-  target.region = 'bucket-region-name'
-  target.rackspace_username = 'super'
-  target.rackspace_api_key = 'secret'
-  # target.rackspace_auth_url = 'lon.auth.api.rackspacecloud.com'
-end
-
-#
-activate :sync_source do |target|
-  source.sync_target = :aws
-  source.directory = 'example-bucket/images'
-  source.glob = '**/*.jpg'
-  source.cache_control = 'max-age=315576000'
-  source.storage_class = :rrs
-end
-
-#
-activate :sync_source do |source|
-  source.sync_target = :aws
-  source.directory = 'example-bucket'
-  source.glob = '**/*.html'
-  source.cache_control = 'max-age=100'
-  source.storage_class = :standard
-end
+```ruby
+...
 ```
 
 ## Badges
