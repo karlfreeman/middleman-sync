@@ -1,22 +1,17 @@
-$:.unshift(File.join(File.dirname(__FILE__), "..", "lib"))
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 
-require "bundler"
+require 'bundler'
 Bundler.setup
-begin; require "awesome_print"; rescue LoadError; end
 
-require "rspec"
+%w(support helpers shared).each do |dir|
+  Dir.glob(File.expand_path("../#{dir}/**/*.rb", __FILE__), &method(:require))
+end
 
-require "support/pry"
-require "support/vcr"
-require "support/timecop"
-require "support/fakefs"
-require "support/simplecov"
+require 'middleman-sync'
 
-require "helpers/middleman_fixtures"
-
-require "middleman-sync"
-
-#
 RSpec.configure do |config|
   include Middleman::Helpers::Fixtures
+  config.expect_with :rspec do |c|
+    c.syntax = :expect
+  end
 end

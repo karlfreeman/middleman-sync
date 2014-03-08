@@ -1,16 +1,17 @@
+require 'middleman-core'
+
 module Middleman
   module Helpers
     module Fixtures
-
       #
       def fixtures_root
-        File.expand_path(File.join(File.dirname(__FILE__), "../", "fixtures", "middleman"))
+        File.expand_path(File.join(File.dirname(__FILE__), '../', 'fixtures', 'middleman'))
       end
 
       # Graciously cribbed from https://github.com/middleman/middleman/issues/737#issuecomment-14122832
       def middleman_app(fixture)
-        fixture_root_dir = File.join(self.fixtures_root, fixture)
-        File.exists?(File.join(fixture_root_dir, "source")) ? ENV["MM_SOURCE"] = "source" : ENV["MM_SOURCE"] = "" 
+        fixture_root_dir = File.join(fixtures_root, fixture)
+        File.exist?(File.join(fixture_root_dir, 'source')) ? ENV['MM_SOURCE'] = 'source' : ENV['MM_SOURCE'] = ''
 
         initialize_commands = @initialize_commands || []
         initialize_commands.unshift lambda {
@@ -24,11 +25,10 @@ module Middleman
             instance_exec(&p)
           end
         end
-
       end
 
       def middleman_cli(fixture)
-        fixture_root_dir = File.join(self.fixtures_root, fixture)
+        fixture_root_dir = File.join(fixtures_root, fixture)
         ENV['MM_ROOT'] = fixture_root_dir
 
         require 'middleman-core/profiling'
@@ -39,7 +39,6 @@ module Middleman
         Dir.chdir(ENV['MM_ROOT'])
         Middleman::Cli::Base.new
       end
-
     end
   end
 end

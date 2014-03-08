@@ -1,224 +1,152 @@
 GIT
-  remote: git://github.com/celluloid/celluloid.git
-  revision: 0eb424b5d36c598b1b8e52241dc0815c7ea6de50
+  remote: git://github.com/bbatsov/rubocop.git
+  revision: c7fb491f6419ade5ceff0a49f9dcbeb1ecdedfe0
   specs:
-    celluloid (0.15.0.pre)
-      timers (>= 1.0.0)
+    rubocop (0.18.1)
+      json (>= 1.7.7, < 2)
+      parser (~> 2.1.7)
+      powerpack (~> 0.0.6)
+      rainbow (>= 1.99.1, < 3.0)
+      ruby-progressbar (~> 1.4)
 
 GIT
-  remote: git://github.com/karlfreeman/multi_mime.git
-  revision: e849a9a2c75bddb3e67bcfc49c7c573f8eee4d1c
+  remote: git://github.com/celluloid/celluloid.git
+  revision: 2ff16d6d28f47db0144a08f463f12635979cf6ab
   specs:
-    multi_mime (0.0.2)
+    celluloid (0.16.0.pre)
+      timers (~> 2.0.0)
+
+GIT
+  remote: git://github.com/karlfreeman/multi_sync.git
+  revision: 4d53f9e81a073524092eb774fc02096d5c8a2d11
+  specs:
+    multi_sync (0.0.2)
+      celluloid (~> 0.15)
+      fog (~> 1.2)
+      lazily (~> 0.1)
+      multi_json (~> 1.7)
+      multi_mime (~> 1.0)
+      virtus (~> 1.0)
 
 PATH
   remote: .
   specs:
     middleman-sync (3.1.0)
-      asset_sync (~> 1.0.0)
-      middleman-core (>= 3.0.0)
-
-PATH
-  remote: ../middleman/middleman
-  specs:
-    middleman (3.1.4)
-      coffee-script (~> 2.2.0)
-      compass (>= 0.12.2)
-      execjs (~> 1.4.0)
-      haml (>= 3.1.6)
-      kramdown (~> 1.1.0)
-      middleman-core (= 3.1.4)
-      middleman-more (= 3.1.4)
-      middleman-sprockets (>= 3.1.2)
-      sass (>= 3.1.20)
-      uglifier (~> 2.1.0)
-    middleman-core (3.1.4)
-      activesupport (~> 3.2.6)
-      bundler (~> 1.1)
-      i18n (~> 0.6.1)
-      listen (~> 1.2.2)
-      rack (>= 1.4.5)
-      rack-test (~> 0.6.1)
-      thor (>= 0.15.2, < 2.0)
-      tilt (~> 1.3.6)
-    middleman-more (3.1.4)
-
-PATH
-  remote: ../multi_sync
-  specs:
-    multi_sync (0.0.1)
-      celluloid (~> 0.14)
-      fog (~> 1.12)
-      lazily (~> 0.1)
-      mime-types (~> 1.21)
-      multi_json (~> 1.7)
-      multi_mime (~> 0.0.2)
-      virtus (~> 0.5)
+      middleman-core (>= 3.2)
+      multi_sync (~> 0.0.1)
 
 GEM
   remote: https://rubygems.org/
   specs:
-    activemodel (3.2.14)
-      activesupport (= 3.2.14)
-      builder (~> 3.0.0)
-    activesupport (3.2.14)
+    activesupport (3.2.17)
       i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
-    addressable (2.3.5)
-    asset_sync (1.0.0)
-      activemodel
-      fog (>= 1.8.0)
-    backports (3.3.3)
-    builder (3.0.4)
-    chunky_png (1.2.8)
-    coderay (1.0.9)
-    coffee-script (2.2.0)
-      coffee-script-source
-      execjs
-    coffee-script-source (1.6.3)
-    colorize (0.5.8)
-    columnize (0.3.6)
-    compass (0.12.2)
-      chunky_png (~> 1.2)
-      fssm (>= 0.2.7)
-      sass (~> 3.1)
-    coveralls (0.6.7)
-      colorize
-      multi_json (~> 1.3)
-      rest-client
-      simplecov (>= 0.7)
-      thor
-    crack (0.4.1)
-      safe_yaml (~> 0.9.0)
-    debugger (1.6.1)
-      columnize (>= 0.3.1)
-      debugger-linecache (~> 1.2.0)
-      debugger-ruby_core_source (~> 1.2.3)
-    debugger-linecache (1.2.0)
-    debugger-ruby_core_source (1.2.3)
-    descendants_tracker (0.0.1)
-    diff-lcs (1.2.4)
-    excon (0.25.3)
-    execjs (1.4.0)
-      multi_json (~> 1.0)
-    fakefs (0.4.2)
-    ffi (1.9.0)
-    fog (1.15.0)
+    ast (1.1.0)
+    axiom-types (0.0.5)
+      descendants_tracker (~> 0.0.1)
+      ice_nine (~> 0.9)
+    builder (3.2.2)
+    coderay (1.1.0)
+    coercible (1.0.0)
+      descendants_tracker (~> 0.0.1)
+    descendants_tracker (0.0.3)
+    diff-lcs (1.2.5)
+    equalizer (0.0.9)
+    excon (0.31.0)
+    fakefs (0.4.3)
+    ffi (1.9.3)
+    fog (1.20.0)
       builder
-      excon (~> 0.25.0)
+      excon (~> 0.31.0)
       formatador (~> 0.2.0)
       mime-types
       multi_json (~> 1.0)
       net-scp (~> 1.1)
       net-ssh (>= 2.1.3)
-      nokogiri (~> 1.5)
-      ruby-hmac
+      nokogiri (>= 1.5.11)
     formatador (0.2.4)
-    fssm (0.2.10)
-    haml (4.0.3)
-      tilt
-    hike (1.2.3)
-    i18n (0.6.5)
-    kramdown (1.1.0)
-    lazily (0.2.0)
-    listen (1.2.3)
+    hitimes (1.2.1)
+    i18n (0.6.9)
+    ice_nine (0.11.0)
+    json (1.8.1)
+    kramdown (1.3.2)
+    lazily (0.2.1)
+    listen (1.3.1)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
       rb-kqueue (>= 0.2)
     method_source (0.8.2)
-    middleman-sprockets (3.1.4)
-      middleman-core (>= 3.0.14)
-      middleman-more (>= 3.0.14)
-      sprockets (~> 2.1)
-      sprockets-helpers (~> 1.0.0)
-      sprockets-sass (~> 1.0.0)
-    mime-types (1.24)
-    mini_portile (0.5.1)
-    multi_json (1.7.9)
+    middleman-core (3.2.2)
+      activesupport (~> 3.2.6)
+      bundler (~> 1.1)
+      i18n (~> 0.6.9)
+      listen (~> 1.1)
+      rack (>= 1.4.5)
+      rack-test (~> 0.6.1)
+      thor (>= 0.15.2, < 2.0)
+      tilt (~> 1.4.1)
+    mime-types (2.1)
+    mini_portile (0.5.2)
+    multi_json (1.9.0)
+    multi_mime (1.0)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
-    net-ssh (2.6.8)
-    nokogiri (1.6.0)
+    net-ssh (2.8.0)
+    nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
-    pry (0.9.12.2)
-      coderay (~> 1.0.5)
+    parser (2.1.7)
+      ast (~> 1.1)
+      slop (~> 3.4, >= 3.4.5)
+    powerpack (0.0.9)
+    pry (0.9.12.6)
+      coderay (~> 1.0)
       method_source (~> 0.8)
       slop (~> 3.4)
-    pry-debugger (0.2.2)
-      debugger (~> 1.3)
-      pry (~> 0.9.10)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
-    rake (10.1.0)
-    rb-fsevent (0.9.3)
-    rb-inotify (0.9.1)
+    rainbow (2.0.0)
+    rake (10.1.1)
+    rb-fsevent (0.9.4)
+    rb-inotify (0.9.3)
       ffi (>= 0.5.0)
-    rb-kqueue (0.2.0)
+    rb-kqueue (0.2.2)
       ffi (>= 0.5.0)
-    rest-client (1.6.7)
-      mime-types (>= 1.16)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
-    rspec-core (2.14.5)
-    rspec-expectations (2.14.2)
+    rspec-core (2.14.8)
+    rspec-expectations (2.14.5)
       diff-lcs (>= 1.1.3, < 2.0)
-    rspec-mocks (2.14.3)
-    ruby-hmac (0.4.0)
-    safe_yaml (0.9.5)
-    sass (3.2.10)
-    simplecov (0.7.1)
-      multi_json (~> 1.0)
-      simplecov-html (~> 0.7.1)
-    simplecov-html (0.7.1)
-    slop (3.4.6)
-    sprockets (2.10.0)
-      hike (~> 1.2)
-      multi_json (~> 1.0)
-      rack (~> 1.0)
-      tilt (~> 1.1, != 1.3.0)
-    sprockets-helpers (1.0.1)
-      sprockets (~> 2.0)
-    sprockets-sass (1.0.1)
-      sprockets (~> 2.0)
-      tilt (~> 1.1)
+    rspec-mocks (2.14.6)
+    ruby-progressbar (1.4.2)
+    slop (3.4.7)
     thor (0.18.1)
-    tilt (1.3.7)
-    timecop (0.6.3)
-    timers (1.1.0)
-    uglifier (2.1.2)
-      execjs (>= 0.3.0)
-      multi_json (~> 1.0, >= 1.0.2)
-    vcr (2.5.0)
-    virtus (0.5.5)
-      backports (~> 3.3)
+    tilt (1.4.1)
+    timecop (0.7.1)
+    timers (2.0.0)
+      hitimes
+    virtus (1.0.1)
+      axiom-types (~> 0.0.5)
+      coercible (~> 1.0)
       descendants_tracker (~> 0.0.1)
-    webmock (1.13.0)
-      addressable (>= 2.2.7)
-      crack (>= 0.3.2)
-    yard (0.8.7)
+      equalizer (~> 0.0.7)
+    yard (0.8.7.3)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (>= 1.0)
+  bundler (~> 1.5)
   celluloid!
-  coveralls
-  fakefs
+  fakefs (~> 0.4.3)
   kramdown (>= 0.14)
-  middleman!
   middleman-sync!
-  multi_mime!
   multi_sync!
   pry
-  pry-debugger
-  rake (>= 1.2)
+  rake (~> 10.0)
   rspec
-  simplecov
+  rubocop!
   timecop
-  vcr
-  webmock
   yard

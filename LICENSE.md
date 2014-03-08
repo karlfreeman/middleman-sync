@@ -1,4 +1,4 @@
-Copyright (c) 2013 Karl Freeman
+Copyright (c) 2013-2014 Karl Freeman
 
 MIT License
 

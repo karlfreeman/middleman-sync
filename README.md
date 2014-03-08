@@ -7,6 +7,12 @@ Middleman-Sync is a [Middleman][middleman] extension...
 ## Installation
 
 ```ruby
+gem 'middleman-sync', '~> 4.0'
+```
+
+## Features / Usage Examples
+
+```ruby
 # S3
 activate :sync_target do |target|
   target.provider = :aws
@@ -51,46 +57,37 @@ activate :sync_source do |source|
 end
 ```
 
-## Features / Usage Examples
-
-```ruby
-```
-
 ## Badges
 
-[![Gem Version](https://badge.fury.io/rb/middleman-sync.png)][gem]
-[![Build Status](https://travis-ci.org/karlfreeman/middleman-sync.png)][travis]
-[![Code Quality](https://codeclimate.com/github/karlfreeman/middleman-sync.png)][codeclimate]
-[![Coverage Status](https://coveralls.io/repos/karlfreeman/middleman-sync/badge.png?branch=master)][coveralls]
-[![Gittip](http://img.shields.io/gittip/karlfreeman.png)][gittip]
+[![Gem Version](http://img.shields.io/gem/v/middleman-sync.svg)][gem]
+[![Build Status](http://img.shields.io/travis/karlfreeman/middleman-sync.svg)][travis]
+[![Code Quality](http://img.shields.io/codeclimate/github/karlfreeman/middleman-sync.svg)][codeclimate]
+[![Gittip](http://img.shields.io/gittip/karlfreeman.svg)][gittip]
 
 ## Supported Storage Services
 
-Behind the scenes we're using [Fog::Storage][fog::storage] which allows us to support the most popular storage providers
+Behind the scenes we're using [Fog::Storage](http://fog.io/storage) which allows us to support the most popular storage providers
 
-* [Amazon S3](http://aws.amazon.com/s3)
-* [Rackspace CloudFiles](http://www.rackspace.com/cloud/files)
-* [Google Cloud Storage](https://developers.google.com/storage)
+- [Amazon S3](http://aws.amazon.com/s3)
+- [Rackspace CloudFiles](http://www.rackspace.com/cloud/files) (WIP)
+- [Google Cloud Storage](https://developers.google.com/storage) (WIP)
 
 ## Supported Ruby Versions
 
 This library aims to support and is [tested against][travis] the following Ruby
 implementations:
 
-* Ruby 1.9.3
-* Ruby 2.0.0
-* [JRuby][]
-* [Rubinius][]
+- Ruby 2.1.0
+- Ruby 2.0.0
+- Ruby 1.9.3
+- [JRuby][jruby]
+- [Rubinius][rubinius]
 
 # Credits
 
 [gem]: https://rubygems.org/gems/middleman-sync
 [travis]: http://travis-ci.org/karlfreeman/middleman-sync
-[coveralls]: https://coveralls.io/r/karlfreeman/middleman-sync
 [codeclimate]: https://codeclimate.com/github/karlfreeman/middleman-sync
 [gittip]: https://www.gittip.com/karlfreeman
 [jruby]: http://www.jruby.org
 [rubinius]: http://rubini.us
-
-[middleman]: http://middlemanapp.com
-[fog::storage]: http://fog.io/storage

@@ -1,1 +1,2 @@
-require "timecop"
+require 'timecop'
+Timecop.freeze

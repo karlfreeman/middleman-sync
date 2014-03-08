@@ -7,7 +7,7 @@ describe Middleman::Sync do
     it { should be_kind_of(String) }
   end
 
-  describe :middleman do
+  describe :middleman, fog: true do
 
     it 'should work' do
       @cli = middleman_cli('glob-app')
