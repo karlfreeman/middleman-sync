@@ -42,25 +42,17 @@ module Middleman
               credentials[option] = opts[option] unless opts[option].nil?
             end
 
-            MultiSync.target(:assets,
-              type: opts[:fog_provider],
-              target_dir: opts[:fog_directory],
-              credentials: credentials
-            )
-
-            MultiSync.source(:middleman,
-              type: :local,
-              source_dir: MultiSync::Extensions::Middleman.source_dir
-            )
+            MultiSync.prepare do
+              send("#{opts[:fog_provider].to_s.downcase}_target", target_dir: opts[:fog_directory], credentials: credentials)
+              local_source(source_dir: MultiSync::Extensions::Middleman.source_dir)
+            end
 
             MultiSync.run_on_build = opts[:after_build] unless opts[:after_build].nil?
 
             case opts[:existing_remote_files]
             when 'delete'
               MultiSync.delete_abandoned_files = true
-            when 'keep'
-              MultiSync.delete_abandoned_files = false
-            when 'ignore'
+            when 'keep', 'ignore'
               MultiSync.delete_abandoned_files = false
             end
 
