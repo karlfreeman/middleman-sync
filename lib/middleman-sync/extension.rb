@@ -3,6 +3,11 @@ require 'middleman-core'
 module Middleman
   module Sync
     class Extension < Middleman::Extension
+      
+      # middleman-sync specific options
+      # option :auto_source, true, 'automatically add Middleman\'s build folder as a local_source (defaults to true)'
+
+      # multi_sync options
       option :verbose, nil, 'turn on verbose logging (defaults to false)'
       option :force, nil, 'force syncing of outdated_files (defaults to false)'
       option :run_on_build, nil, 'when within a framework which `builds` assets, whether to sync afterwards (defaults to true)'
@@ -19,18 +24,22 @@ module Middleman
         send(:option, option_name, nil)
       end
 
+      require 'multi_sync' unless defined?(MultiSync)
+
       def initialize(app, options_hash = {}, &block)
-        super
-
-        # prevent running unless in the :build environment
         return unless app.environment == :build
-
-        require 'multi_sync' unless defined?(MultiSync)
+        super
 
         opts = options.dup.to_h
         opts.delete_if { |k, v| v.nil? }
 
         app.after_configuration do
+
+          # if opts.delete(:auto_source)
+          #   MultiSync.prepare do
+          #     local_source(source_dir: MultiSync::Extensions::Middleman.source_dir)
+          #   end
+          # end
 
           if DEPRECATED_OPTIONS.any? { |deprecated_option| opts.key?(deprecated_option) }
             MultiSync.warn 'Deprecated :sync options detected...'
@@ -44,7 +53,6 @@ module Middleman
 
             MultiSync.prepare do
               send("#{opts[:fog_provider].to_s.downcase}_target", target_dir: opts[:fog_directory], credentials: credentials)
-              local_source(source_dir: MultiSync::Extensions::Middleman.source_dir)
             end
 
             MultiSync.run_on_build = opts[:after_build] unless opts[:after_build].nil?
@@ -74,62 +82,107 @@ module Middleman
         end
       end
       alias_method :included, :initialize
+
     end
 
-    class SourceExtension < Middleman::Extension
-      self.supports_multiple_instances = true
+    module Sources
 
-      option :name, nil, ''
-      option :type, nil, ''
-      option :source_dir, nil, ''
-      option :resource_options, nil, ''
-      option :targets, nil, ''
-      option :include, nil, ''
-      option :exclude, nil, ''
+      # create methods for each source (local_source(options), manifest_source(options))
+      MultiSync::Client::SUPPORTED_SOURCE_TYPES.each do |type, clazz|
 
-      def initialize(app, options_hash = {}, &block)
-        super
+        # get the class name (eg LocalSource)
+        class_name = clazz.name.split('::').last
 
-        # prevent running unless in the :build environment
-        return unless app.environment == :build
+        # get the classes attributes
+        clazz_attributes = clazz.attribute_set.map(&:name)
 
-        require 'multi_sync' unless defined?(MultiSync)
+        # create a new Middleman::Extension for each one
+        extension_meta_class = Class.new(Middleman::Extension) do
+          self.supports_multiple_instances = true
 
-        opts = options.dup.to_h
-        opts.delete_if { |k, v| v.nil? }
+          # TODO: HACK
+          option :type, type
+          
+          # use the same attributes on the class as we do on the extension
+          clazz_attributes.each do |attribute|
+            self.send(:option, attribute, nil, '')
+          end
 
-        app.after_configuration do
-          MultiSync.source(opts.delete(:name), opts)
+          def initialize(app, options_hash = {}, &block)
+            return unless app.environment == :build
+            super
+            opts = options.dup.to_h
+            opts.delete_if { |k, v| v.nil? }
+            # opts[:source_dir] ||= MultiSync::Extensions::Middleman.source_dir
+            app.after_configuration do
+              MultiSync.prepare do
+                self.send("#{opts.delete(:type)}_source", opts)
+              end
+            end
+          end
+          alias_method :included, :initialize
         end
+
+        # add the new extension to Middleman::Sync's Sources
+        extension_class = Middleman::Sync::Sources.const_set(class_name, extension_meta_class)
+
+        # register this extension to Middleman's registar
+        Middleman::Extensions.register("#{type}_source".to_sym) do
+          extension_class
+        end
+
       end
-      alias_method :included, :initialize
+
     end
 
-    class TargetExtension < Middleman::Extension
-      self.supports_multiple_instances = true
+    module Targets
 
-      option :name, nil, ''
-      option :type, nil, ''
-      option :target_dir, nil, ''
-      option :destination_dir, nil, ''
-      option :credentials, nil, ''
+      # create methods for each source (local_target(options), aws_target(options))
+      MultiSync::Client::SUPPORTED_TARGET_TYPES.each do |type, clazz|
 
-      def initialize(app, options_hash = {}, &block)
-        super
+        # get the class name (eg AwsTarget)
+        class_name = clazz.name.split('::').last
 
-        # prevent running unless in the :build environment
-        return unless app.environment == :build
+        # get the classes attributes
+        clazz_attributes = clazz.attribute_set.map(&:name)
+        clazz_attributes.delete(:connection)
 
-        require 'multi_sync' unless defined?(MultiSync)
+        # create a new Middleman::Extension for each one
+        extension_meta_class = Class.new(Middleman::Extension) do
+          self.supports_multiple_instances = true
 
-        opts = options.dup.to_h
-        opts.delete_if { |k, v| v.nil? }
+          # TODO: HACK
+          option :type, type
+          
+          # use the same attributes on the class as we do on the extension
+          clazz_attributes.each do |attribute|
+            self.send(:option, attribute, nil, '')
+          end
 
-        app.after_configuration do
-          MultiSync.target(opts.delete(:name), opts)
+          def initialize(app, options_hash = {}, &block)
+            return unless app.environment == :build
+            super
+            opts = options.dup.to_h
+            opts.delete_if { |k, v| v.nil? }
+            app.after_configuration do
+              MultiSync.prepare do
+                self.send("#{opts.delete(:type)}_target", opts)
+              end
+            end
+          end
+          alias_method :included, :initialize
         end
+
+        # add the new extension to Middleman::Sync's Sources
+        extension_class = Middleman::Sync::Targets.const_set(class_name, extension_meta_class)
+
+        # register this extension to Middleman's registar
+        Middleman::Extensions.register("#{type}_target".to_sym) do
+          extension_class
+        end
+
       end
-      alias_method :included, :initialize
+
     end
   end
 end
