@@ -4,7 +4,7 @@ module Middleman
   module Sync
     class Extension < Middleman::Extension
       # middleman-sync specific options
-      # option :auto_source, true, 'automatically add Middleman\'s build folder as a local_source (defaults to true)'
+      option :auto_source, true, 'automatically add Middleman\'s build folder as a local_source (defaults to true)'
 
       # multi_sync options
       option :verbose, nil, 'turn on verbose logging (defaults to false)'
@@ -34,11 +34,11 @@ module Middleman
 
         app.after_configuration do
 
-          # if opts.delete(:auto_source)
-          #   MultiSync.prepare do
-          #     local_source(source_dir: MultiSync::Extensions::Middleman.source_dir)
-          #   end
-          # end
+          if opts.delete(:auto_source)
+            MultiSync.prepare do
+              local_source(source_dir: MultiSync::Extensions::Middleman.source_dir)
+            end
+          end
 
           if DEPRECATED_OPTIONS.any? { |deprecated_option| opts.key?(deprecated_option) }
             MultiSync.warn 'Deprecated :sync options detected...'
