@@ -3,7 +3,6 @@ require 'middleman-core'
 module Middleman
   module Sync
     class Extension < Middleman::Extension
-      
       # middleman-sync specific options
       # option :auto_source, true, 'automatically add Middleman\'s build folder as a local_source (defaults to true)'
 
@@ -82,11 +81,9 @@ module Middleman
         end
       end
       alias_method :included, :initialize
-
     end
 
     module Sources
-
       # create methods for each source (local_source(options), manifest_source(options))
       MultiSync::Client::SUPPORTED_SOURCE_TYPES.each do |type, clazz|
 
@@ -102,10 +99,10 @@ module Middleman
 
           # TODO: HACK
           option :type, type
-          
+
           # use the same attributes on the class as we do on the extension
           clazz_attributes.each do |attribute|
-            self.send(:option, attribute, nil, '')
+            send(:option, attribute, nil, '')
           end
 
           def initialize(app, options_hash = {}, &block)
@@ -116,7 +113,7 @@ module Middleman
             # opts[:source_dir] ||= MultiSync::Extensions::Middleman.source_dir
             app.after_configuration do
               MultiSync.prepare do
-                self.send("#{opts.delete(:type)}_source", opts)
+                send("#{opts.delete(:type)}_source", opts)
               end
             end
           end
@@ -132,11 +129,9 @@ module Middleman
         end
 
       end
-
     end
 
     module Targets
-
       # create methods for each source (local_target(options), aws_target(options))
       MultiSync::Client::SUPPORTED_TARGET_TYPES.each do |type, clazz|
 
@@ -153,10 +148,10 @@ module Middleman
 
           # TODO: HACK
           option :type, type
-          
+
           # use the same attributes on the class as we do on the extension
           clazz_attributes.each do |attribute|
-            self.send(:option, attribute, nil, '')
+            send(:option, attribute, nil, '')
           end
 
           def initialize(app, options_hash = {}, &block)
@@ -166,7 +161,7 @@ module Middleman
             opts.delete_if { |k, v| v.nil? }
             app.after_configuration do
               MultiSync.prepare do
-                self.send("#{opts.delete(:type)}_target", opts)
+                send("#{opts.delete(:type)}_target", opts)
               end
             end
           end
@@ -182,7 +177,6 @@ module Middleman
         end
 
       end
-
     end
   end
 end

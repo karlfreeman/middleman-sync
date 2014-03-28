@@ -6,7 +6,6 @@ activate :sync do |config|
   config.run_on_build = true
 end
 
-
 activate :sync_target do |target|
   target.name = :middleman
   target.type = :aws
@@ -24,4 +23,3 @@ activate :sync_source do |source|
   source.type = :local
   source.source_dir = MultiSync::Extensions::Middleman.source_dir
 end
-

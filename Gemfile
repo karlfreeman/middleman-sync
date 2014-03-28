@@ -6,7 +6,7 @@ gem 'celluloid', github: 'celluloid/celluloid'
 gem 'multi_sync', github: 'karlfreeman/multi_sync'
 
 group :developement do
-  gem 'rubocop', github: 'bbatsov/rubocop'
+  gem 'rubocop', '~> 0.19'
 end
 
 group :test do
