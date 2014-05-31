@@ -3,18 +3,22 @@ cache: bundler
 bundler_args: --without development
 rvm:
   - ruby-head
+  - ruby
   - jruby-head
+  - jruby
   - 2.1.0
   - 2.0.0
   - 1.9.3
-  - rbx-19mode
-  - jruby-19mode
+  - rbx-2
 matrix:
   fast_finish: true
   allow_failures:
     - rvm: ruby-head
+    - rvm: ruby
     - rvm: jruby-head
-    - rvm: rbx-19mode
-    - rvm: jruby-19mode
+    - rvm: jruby
+    - rvm: rbx-2
 notifications:
   email: false
+env:
+  - CODECLIMATE_REPO_TOKEN=271fa184eaf398998fd0a874cd7eedecd0f8deba5e5c7f143a0954050239dc3e

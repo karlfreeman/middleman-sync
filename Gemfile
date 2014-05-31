@@ -14,4 +14,5 @@ group :test do
   gem 'fakefs', '~> 0.4.3'
   gem 'rspec'
   gem 'timecop'
+  gem 'codeclimate-test-reporter'
 end
