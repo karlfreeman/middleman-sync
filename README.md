@@ -61,6 +61,7 @@ end
 [![Gem Version](http://img.shields.io/gem/v/middleman-sync.svg)][gem]
 [![Build Status](http://img.shields.io/travis/karlfreeman/middleman-sync.svg)][travis]
 [![Code Quality](http://img.shields.io/codeclimate/github/karlfreeman/middleman-sync.svg)][codeclimate]
+[![Code Coverage](http://img.shields.io/codeclimate/coverage/github/karlfreeman/middleman-sync.svg)][codeclimate]
 [![Gittip](http://img.shields.io/gittip/karlfreeman.svg)][gittip]
 
 ## Supported Storage Services
