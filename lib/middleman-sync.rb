@@ -1,7 +1,6 @@
-require "middleman-core"
-require "middleman-sync/commands"
+require 'middleman-core'
 
-::Middleman::Extensions.register(:sync, ">= 3.0.0") do
-  require "middleman-sync/extension"
-  ::Middleman::Sync
+Middleman::Extensions.register(:sync) do
+  require 'middleman-sync/extension'
+  Middleman::Sync::Extension
 end

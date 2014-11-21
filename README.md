@@ -1,102 +1,95 @@
 # Middleman Sync
 
+:heavy_exclamation_mark: **currently a functioning WIP thats not quite finished yet but its close!** :heavy_exclamation_mark:
+
 Synchronise your Middleman build to S3 and more
 
-Middleman-Sync is a [Middleman](https://github.com/middleman/middleman) extension that wraps the excellant [Asset Sync](https://raw.github.com/rumblelabs/asset_sync) to allow for both a CLI and after_build hook to your Middleman build's
+Middleman-Sync is a [Middleman](http://middlemanapp.com) extension...
 
 ## Installation
 
-If you already have a Middleman project:
+```ruby
+gem 'middleman-sync', '~> 4.0'
+```
 
-Add `gem "middleman-sync", "~> 3.0.12"` to your `Gemfile` then open up your `config.rb` and add:
-
-### AWS
-
-``` ruby
-# Activate sync extension
-activate :sync do |sync|
-  sync.fog_provider = 'AWS' # Your storage provider
-  sync.fog_directory = 'bucket-name' # Your bucket name
-  sync.fog_region = 'bucket-region-name' # The region your storage bucket is in (eg us-east-1, us-west-1, eu-west-1, ap-southeast-1 )
-  sync.aws_access_key_id = 'super' # Your Amazon S3 access key
-  sync.aws_secret_access_key = 'secret' # Your Amazon S3 access secret
-  sync.existing_remote_files = 'keep' # What to do with your existing remote files? ( keep or delete )
-  # sync.gzip_compression = false # Automatically replace files with their equivalent gzip compressed version
-  # sync.after_build = false # Disable sync to run after Middleman build ( defaults to true )
+```ruby
+configure :build do
+  activate :sync do |config|
+    # config.verbose = false  # turn on verbose logging (defaults to false)
+    # config.force = false  # force syncing of outdated_files (defaults to false)
+    # config.run_on_build = true # when within a framework which `builds` assets, whether to sync afterwards (defaults to true)
+    # config.sync_outdated_files = true # when an outdated file is found whether to replace it (defaults to true)
+    # config.delete_abandoned_files = true # when an abandoned file is found whether to remove it (defaults to true)
+    # config.upload_missing_files = true # when a missing file is found whether to upload it (defaults to true)
+    # config.target_pool_size = 8 # how many threads you would like to open for each target (defaults to the amount of CPU core's your machine has)
+    # config.max_sync_attempts = 3 # how many times a file should be retried if there was an error during sync (defaults to 3)
+  end
 end
 ```
 
-### Rackspace
+## Features / Usage Examples
 
-``` ruby
-# Activate sync extension
-activate :sync do |sync|
-  sync.fog_provider = 'Rackspace' # Your storage provider
-  sync.fog_directory = 'bucket-name' # Your bucket name
-  sync.fog_region = 'bucket-region-name' # The region your storage bucket is in
-  sync.rackspace_username = 'super' # Your Rackspace username
-  sync.rackspace_api_key = 'secret' # Your Rackspace API Key
-  sync.existing_remote_files = 'keep' # What to do with your existing remote files? ( keep or delete )
-  # sync.gzip_compression = false # Automatically replace files with their equivalent gzip compressed version
-  # sync.rackspace_auth_url = 'domain' # Your Rackspace auth URL
-  # sync.after_build = false # Disable sync to run after Middleman build ( defaults to true )
+### Source
+
+```ruby
+configure :build do
+  activate :sync_source do |source|
+    source.name = :middleman
+    source.type = :local
+    source.source_dir = MultiSync::Extensions::Middleman.source_dir
+  end
 end
 ```
 
-### Google Storage
+### Target
 
-``` ruby
-# Activate sync extension
-activate :sync do |sync|
-  sync.fog_provider = 'Google' # Your storage provider
-  sync.fog_directory = 'bucket-name' # Your bucket name
-  sync.fog_region = 'bucket-region-name' # The region your storage bucket is in
-  sync.google_storage_access_key_id = 'super' # Your Google Storage access key
-  sync.google_storage_secret_access_key = 'secret' # Your Google Storage access secret
-  sync.existing_remote_files = 'keep' # What to do with your existing remote files? ( keep or delete )
-  # sync.gzip_compression = false # Automatically replace files with their equivalent gzip compressed version
-  # sync.after_build = false # Disable sync to run after Middleman build ( defaults to true )
+```ruby
+configure :build do
+  activate :sync_target do |target|
+    target.name = :assets
+    target.type = :aws
+    target.target_dir = 'multi-sync-middleman'
+    target.credentials = {
+      region: 'us-east-1',
+      aws_access_key_id: 'xxx',
+      aws_secret_access_key: 'xxx'
+    }
+  end
 end
 ```
 
-## Usage
+## Badges
 
-Once you've bundled you should be able to run:
+[![Gem Version](http://img.shields.io/gem/v/middleman-sync.svg)][gem]
+[![Build Status](http://img.shields.io/travis/karlfreeman/middleman-sync.svg)][travis]
+[![Code Quality](http://img.shields.io/codeclimate/github/karlfreeman/middleman-sync.svg)][codeclimate]
+[![Code Coverage](http://img.shields.io/codeclimate/coverage/github/karlfreeman/middleman-sync.svg)][codeclimate]
+[![Gittip](http://img.shields.io/gittip/karlfreeman.svg)][gittip]
 
-``` ruby 
-# Turn off after_build in your sync config to disable middleman sync running after each build
-middleman build
-```
+## Supported Storage Services
 
-``` ruby 
-# Manually sync your current build directory
-middleman sync
-```
+Behind the scenes we're using [Fog::Storage](http://fog.io/storage) which allows us to support the most popular storage providers
 
-## Sync to multiple targets
+- [Amazon S3](http://aws.amazon.com/s3)
+- [Rackspace CloudFiles](http://www.rackspace.com/cloud/files) (WIP)
+- [Google Cloud Storage](https://developers.google.com/storage) (WIP)
 
-Middleman and Middleman-Sync are both environment agnostic. To be able to sync different versions of Middleman to different locations ( eg staging, production ) You might try running `middleman build` with environment varibles swapping out the sync credentials that need changing pre requirements.
+## Supported Ruby Versions
 
-Modifying the activate area to use an `ENV['FOG_DIRECTORY']` would allow you to run `FOG_DIRECTORY=example-staging middleman build` which then would sync to a different bucket on S3.
+This library aims to support and is [tested against][travis] the following Ruby
+implementations:
 
-``` ruby
-# Activate sync extension
-activate :sync do |sync|
-  sync.fog_provider = 'AWS' # Your storage provider
-  sync.fog_directory = ENV['FOG_DIRECTORY'] # Your bucket name
-  sync.fog_region = 'bucket-region-name' # The region your storage bucket is in
-  sync.aws_access_key_id = 'super' # Your Amazon S3 access key
-  sync.aws_secret_access_key = 'secret' # Your Amazon S3 access secret
-  sync.existing_remote_files = 'keep' # What to do with your existing remote files? (keep or delete)
-  # sync.after_build = false # Disable sync to run after Middleman build ( defaults to true )
-end
-```
+- Ruby 2.1.0
+- Ruby 2.0.0
+- Ruby 1.9.3
+- [JRuby][jruby]
+- [Rubinius][rubinius]
 
-## Credits
+# Credits
 
-- [Asset Sync](https://github.com/rumblelabs/asset_sync)
-
-Cribbed:
-
-- [Middleman Deploy](https://github.com/tvaughan/middleman-deploy)
-- [Middleman Smusher](https://github.com/middleman/middleman-smusher)
+[gem]: https://rubygems.org/gems/middleman-sync
+[travis]: http://travis-ci.org/karlfreeman/middleman-sync
+[codeclimate]: https://codeclimate.com/github/karlfreeman/middleman-sync
+[gittip]: https://www.gittip.com/karlfreeman
+[jruby]: http://www.jruby.org
+[rubinius]: http://rubini.us
