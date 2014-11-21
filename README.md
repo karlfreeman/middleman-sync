@@ -1,4 +1,6 @@
-# Middleman Sync (WIP)
+# Middleman Sync
+
+:heavy_exclamation_mark: **currently a functioning WIP thats not quite finished yet but its close!** :heavy_exclamation_mark:
 
 Synchronise your Middleman build to S3 and more
 
