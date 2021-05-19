@@ -112,7 +112,7 @@ GEM
       thor (>= 0.15.2, < 2.0)
       tilt (~> 1.4.1)
     mime-types (2.4.3)
-    mini_portile (0.6.1)
+    mini_portile2 (2.1.0)
     multi_json (1.9.2)
     multi_mime (1.0.1)
     multi_sync (0.0.4)
@@ -125,8 +125,8 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.1)
-    nokogiri (1.6.4.1)
-      mini_portile (~> 0.6.0)
+    nokogiri (1.6.8.1)
+      mini_portile2 (~> 2.1.0)
     opennebula (4.10.1)
       json
       nokogiri
